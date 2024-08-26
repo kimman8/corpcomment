@@ -7,7 +7,11 @@ export default function FeedbackForm() {
     <form className="form">
       <textarea
         value={text}
-        onChange={(e) => setText(e.target.value)}
+        onChange={(e) => {
+          if (e.target.value.length <= MAX_CHARACTERS) {
+            setText(e.target.value);
+          }
+        }}
         id="feedback-textarea"
         placeholder="blabla"
         spellCheck={false}
