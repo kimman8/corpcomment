@@ -1,6 +1,6 @@
-import FeedbackList from './FeedbackList';
+import FeedbackList from '../feedback/FeedbackList';
 import Header from './Header';
-import { TFeedbackItem } from '../lib/types';
+import { TFeedbackItem } from '../../lib/types';
 
 type ContainerProps = {
   handleAddToList: (text: string) => void;
