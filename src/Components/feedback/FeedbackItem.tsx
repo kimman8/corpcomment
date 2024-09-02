@@ -5,27 +5,26 @@ import { useState } from 'react';
 type FeedbackItemProps = {
   feedbackItem: TFeedbackItem;
 };
-export default function FeedbackItem({
-  feedbackItem: { badgeLetter, company, text, upvoteCount, daysAgo },
-}: FeedbackItemProps) {
+export default function FeedbackItem({ feedbackItem }: FeedbackItemProps) {
   const [open, setOpen] = useState(false);
+  const [upvoteCount, setUpvoteCount] = useState(feedbackItem.upvoteCount);
   return (
     <li
       className={`feedback ${open && 'feedback--expand'}`}
       onClick={() => setOpen((prev) => !prev)}
     >
-      <button>
+      <button onClick={() => setUpvoteCount((prev) => ++prev)}>
         <TriangleUpIcon />
         <span>{upvoteCount}</span>
       </button>
       <div>
-        <p>{badgeLetter}</p>
+        <p>{feedbackItem.badgeLetter}</p>
       </div>
       <div>
-        <p>{company}</p>
-        <p>{text}</p>
+        <p>{feedbackItem.company}</p>
+        <p>{feedbackItem.text}</p>
       </div>
-      <p>{daysAgo === 0 ? 'NEW' : `${daysAgo}d`}</p>
+      <p>{feedbackItem.daysAgo === 0 ? 'NEW' : `${feedbackItem.daysAgo}d`}</p>
     </li>
   );
 }
